@@ -48,7 +48,10 @@ async function findSteps(id) {
     .where("schemes.id", id);
 }
 
-async function addStep() {}
+async function addStep(step, scheme_id) {
+  const [id] = await db("steps").insert({ ...step, scheme_id }, "id");
+  return await findSteps(scheme_id);
+}
 
 async function remove(id) {
   const delScheme = await findById(id);
