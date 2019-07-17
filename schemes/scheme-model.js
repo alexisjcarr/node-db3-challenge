@@ -14,7 +14,13 @@ async function find() {
   return await db("schemes");
 }
 
-async function findById(id) {}
+async function findById(id) {
+  return (
+    (await db("schemes")
+      .where({ id })
+      .first()) || null
+  );
+}
 
 async function findSteps() {}
 
