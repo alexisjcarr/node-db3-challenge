@@ -50,4 +50,10 @@ async function findSteps(id) {
 
 async function addStep() {}
 
-async function remove() {}
+async function remove(id) {
+  const delScheme = await findById(id);
+  const del_ = await db("schemes")
+    .where({ id })
+    .del();
+  return del_ ? delScheme : null;
+}
