@@ -49,7 +49,9 @@ async function findSteps(id) {
 }
 
 async function addStep(step, scheme_id) {
-  const [id] = await db("steps").insert({ ...step, scheme_id }, "id");
+  const [id] = await db("steps")
+    .insert({ ...step, scheme_id }, "id")
+    .returning("*");
   return await findSteps(scheme_id);
 }
 
